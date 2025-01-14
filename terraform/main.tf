@@ -51,3 +51,7 @@ resource "aws_lambda_function_url" "cloudresume_function_url" {
     max_age           = 86400
   }
 }
+
+output "lambda_function_url" {
+  value = aws_lambda_function_url.cloudresume_function_url.function_url
+}
