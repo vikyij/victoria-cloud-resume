@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "viky-terraform"
+
+    workspaces {
+      name = "victoria-cloud-resume"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
