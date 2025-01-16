@@ -40,7 +40,7 @@ resource "aws_lambda_function" "cloudresume_views_api" {
   filename      = "lambda_function.zip"
   environment {
     variables = {
-      DYNAMODB_TABLE = "my-my_cloud_resume_view"
+      DYNAMODB_TABLE = "my-cloud-resume-view"
     }
   }
 }
@@ -61,4 +61,10 @@ resource "aws_lambda_function_url" "cloudresume_function_url" {
 
 output "lambda_function_url" {
   value = aws_lambda_function_url.cloudresume_function_url.function_url
+}
+
+data "archive_file" "zip" {
+  type = "zip"
+  source_dir = "${path.module}/lambda"
+  output_path = "${path.module}/packedlambda.zip"
 }
