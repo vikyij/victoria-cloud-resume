@@ -37,7 +37,7 @@ resource "aws_lambda_function" "cloudresume_views_api" {
   runtime = "python3.9"
   handler       = "lambda_function.lambda_handler"
   role          = "arn:aws:iam::886436945965:role/service-role/cloudresume-views-api-role-zujjql4x"
-  filename      = "lambda_function.zip"
+  filename      = data.archive_file.zip.output_path
   environment {
     variables = {
       DYNAMODB_TABLE = "my-cloud-resume-view"
@@ -66,5 +66,5 @@ output "lambda_function_url" {
 data "archive_file" "zip" {
   type = "zip"
   source_dir = "${path.module}/lambda"
-  output_path = "${path.module}/packedlambda.zip"
+  output_path = "${path.module}/lambda_function.zip"
 }
