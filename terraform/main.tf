@@ -59,6 +59,13 @@ resource "aws_lambda_function_url" "cloudresume_function_url" {
   }
 }
 
+resource "aws_s3_bucket" "my_s3_bucket" {
+  bucket = "victoria-cloud-resume"
+  tags = {
+    project = "cloud-resume"
+  }
+}
+
 output "lambda_function_url" {
   value = aws_lambda_function_url.cloudresume_function_url.function_url
 }
